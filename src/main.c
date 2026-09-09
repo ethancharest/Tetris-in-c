@@ -1,20 +1,23 @@
-#include "input.h"
+#include "board.h"
+#include "piece.h"
 #include <stdio.h>
-#include <unistd.h>
 
 int main(void) {
-    input_enable_raw_mode();
-    printf("Press keys (q to quit). No key needed to keep looping.\n");
+    Board board;
+    board_init(&board);
 
-    while (1) {
-        int key = input_read_key();
-        if (key != -1) {
-            printf("Got key: %d\n", key);
-            if (key == 'q') break;
+    Piece piece;
+    piece_init_t(&piece);
+
+    // temporarily "stamp" the piece onto the board so board_print can show it
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (piece.shape[i][j] == 1) {
+                board.cells[piece.y + i][piece.x + j] = 1;
+            }
         }
-        usleep(200000); // sleep 200ms so it doesn't spam your terminal
     }
 
-    input_disable_raw_mode();
+    board_print(&board);
     return 0;
 }
