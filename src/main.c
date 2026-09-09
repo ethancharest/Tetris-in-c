@@ -7,7 +7,7 @@ int main(void) {
     board_init(&board);
 
     Piece piece;
-    piece_init_t(&piece);
+    piece_init_t(&piece, SHAPE_T);
 
     // temporarily "stamp" the piece onto the board so board_print can show it
     for (int i = 0; i < 4; i++) {
