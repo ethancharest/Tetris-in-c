@@ -53,3 +53,6 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# Compiled binary (Linux/WSL build, no extension)
+tetris
