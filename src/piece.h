@@ -1,5 +1,6 @@
 #ifndef PIECE_H
 #define PIECE_H
+#include "board.h"
 
 #define SHAPE_I 0
 #define SHAPE_O 1
@@ -15,6 +16,7 @@ typedef struct {
     int y;
 } Piece;
 
-void piece_init_t(Piece *p, int shape_id);
+void piece_init(Piece *p, int shape_id);
+int piece_can_move(Piece *p, Board *b, int dx, int dy);
 
 #endif

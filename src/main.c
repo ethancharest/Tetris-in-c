@@ -7,17 +7,15 @@ int main(void) {
     board_init(&board);
 
     Piece piece;
-    piece_init_t(&piece, SHAPE_T);
+    piece_init(&piece, SHAPE_T);
 
-    // temporarily "stamp" the piece onto the board so board_print can show it
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            if (piece.shape[i][j] == 1) {
-                board.cells[piece.y + i][piece.x + j] = 1;
-            }
-        }
-    }
+    printf("Can move down? %d\n", piece_can_move(&piece, &board, 0, 1));
+    printf("Can move left? %d\n", piece_can_move(&piece, &board, -1, 0));
+    printf("Can move right? %d\n", piece_can_move(&piece, &board, 1, 0));
 
-    board_print(&board);
+    // now push it hard against the left wall and try again
+    piece.x = 0;
+    printf("At x=0, can move left? %d\n", piece_can_move(&piece, &board, -1, 0));
+
     return 0;
 }
